@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FBI KeyBlocker v4.8 – Classified Endpoint</title>
+  <style>
+    body { background: black; color: #00FF00; font-family: monospace; padding: 20px; }
+    .blink { animation: blink 1s step-start infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    #notifications { margin-top: 20px; border-top: 1px solid #00FF00; padding-top: 10px; }
+    .alert { margin: 5px 0; border: 1px solid #00FF00; padding: 5px; }
+    .alert img { max-width: 200px; display: block; margin-top: 5px; }
+    input { background: black; color: #00FF00; border: 1px solid #00FF00; font-family: monospace; padding: 5px; width: 300px; }
+    button { background: #00FF00; color: black; border: none; padding: 5px 10px; cursor: pointer; margin-left: 5px; }
+  </style>
+</head>
+<body>
+<pre id="console"></pre>
+
+<div id="inputBox" style="display:none;">
+  <input type="text" id="emailInput" placeholder="Enter your email..." />
+  <button onclick="submitEmail()">Bind Key</button>
+</div>
+
+<div id="notifications"></div>
+
+<script>
+const lines = [
+  ">>> FBI KEYBLOCKER v4.8 – CLASSIFIED ENDPOINT DEPLOYMENT",
+  "SYSTEM BOOT SEQUENCE INITIATED",
+  "[█░░░░░░░░░░░░░░░░░░░░] 3% – Initializing Core CPU Modules",
+  "[███░░░░░░░░░░░░░░░░░░] 7% – Loading Cryptographic Core Engines",
+  "[█████░░░░░░░░░░░░░░░░] 12% – Lock-Cycle Protocol Initialization",
+  ">>> Lock-Cycle Protocol: ACTIVE",
+  ">>> AES-512 Seeded Entropy Pools: SYNCHRONIZED",
+  "[███████░░░░░░░░░░░░░░] 18% – Engaging Quarantine Net Modules",
+  ">>> Quarantine Net: ENGAGED",
+  "[██████████░░░░░░░░░░░] 25% – Establishing Triple-Tunnel Encryption Channels",
+  ">>> User Layer: STABLE",
+  ">>> Telemetry Layer: STABLE",
+  ">>> Admin Layer: STABLE",
+  "[████████████░░░░░░░░░] 35% – Endpoint Integrity Verification",
+  ">>> Zero-Day Threat Scan: COMPLETE",
+  ">>> Malware Signature Check: COMPLETE",
+  "[██████████████░░░░░░░] 45% – Deploying Failsafe Offline Mode",
+  ">>> Failsafe Offline Mode: ACTIVE",
+  "[████████████████░░░░░] 55% – Network Spoofing Simulation",
+  ">>> Spoofing Vectors: NULL",
+  "[██████████████████░░░] 65% – Quantum-Resistance Module Check",
+  ">>> PQC Lattice Stability: VERIFIED",
+  ">>> Entropy Re-seed Integrity: PASS",
+  "[████████████████████░] 75% – Real-Time Threat Simulation",
+  ">>> Phishing Patterns: ISOLATED",
+  ">>> Malware Injection Attempts: BLOCKED",
+  ">>> Polymorphic Attack Patterns: NEUTRALIZED",
+  "[█████████████████████░] 82% – Subsystem Diagnostic Scan",
+  ">>> Firmware Integrity: VERIFIED",
+  ">>> System Clock Synchronization: ONLINE",
+  ">>> Backup Endpoint Check: PASSED",
+  "[██████████████████████░] 88% – Dynamic Threat Containment",
+  ">>> Network Anomalies: DETECTED → REDIRECTED TO QUARANTINE",
+  ">>> Unauthorized Access Attempts: NEUTRALIZED",
+  "[███████████████████████░] 92% – Encryption Binding Sequence",
+  ">>> Endpoint Encryption Key: INITIALIZING",
+  ">>> Quantum Key Re-seed: IN PROGRESS",
+  "[████████████████████████] 96% – Finalizing Multi-Layer Security",
+  ">>> Endpoint Fully Hardened: STANDBY",
+  ">>> Continuous Synchronization Recommended",
+  "[█████████████████████████] 100% – SYSTEM SECURE",
+  ">>> SYSTEM READY",
+  ">>> ENDPOINT SECURED – ALL PROTOCOLS FULLY OPERATIONAL",
+  "[CLASSIFIED – AUTHORIZED ACCESS ONLY]",
+  ">>> Waiting for authorized input _"
+];
+
+const consoleEl = document.getElementById("console");
+let i = 0;
+
+function typeLine() {
+  if (i < lines.length) {
+    consoleEl.innerHTML += lines[i] + "\n";
+    i++;
+    setTimeout(typeLine, 150);
+  } else {
+    document.getElementById("inputBox").style.display = "block";
+  }
+}
+
+typeLine();
+
+// ===== Typing animation for notifications =====
+function typeNotification(message, imgSrc=null, i=0, alertDiv=null){
+  if(!alertDiv){
+    const notifications = document.getElementById("notifications");
+    alertDiv = document.createElement("div");
+    alertDiv.className = "alert";
+    notifications.appendChild(alertDiv);
+  }
+
+  if(i < message.length){
+    alertDiv.innerHTML = message.substring(0,i+1);
+    setTimeout(()=> typeNotification(message,imgSrc,i+1,alertDiv), 50);
+  } else if(imgSrc){
+    const img = document.createElement("img");
+    img.src = imgSrc;
+    alertDiv.appendChild(img);
+  }
+}
+
+// ===== Email input & first auto alert =====
+function submitEmail() {
+  const email = document.getElementById("emailInput").value.trim();
+  if (!email) return alert("Please enter email");
+
+  document.getElementById("emailInput").disabled = true;
+  typeNotification(`FBI KEYBLOCKER ALERT – Endpoint secured for: ${email}`);
+
+  // Auto fake alerts sequence for story
+  setTimeout(()=>sendFakeNotification("ALERT: Network scan complete"), 2000);
+  setTimeout(()=>sendFakeNotification("ALERT: Malware signature verified"), 5000);
+  setTimeout(()=>sendFakeNotification("ALERT: Image captured", "https://via.placeholder.com/150"), 8000);
+}
+
+// ===== Admin trigger =====
+function sendFakeNotification(text, img=null){
+  typeNotification(text, img);
+}
+
+// ===== Example admin usage =====
+// sendFakeNotification("ALERT: New module activated!");
+// sendFakeNotification("ALERT: Image received", "https://via.placeholder.com/150");
+
+</script>
+</body>
+</html>
